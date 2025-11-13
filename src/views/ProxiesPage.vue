@@ -51,7 +51,10 @@ import { twoColumnProxyGroup } from '@/store/settings'
 import { useSessionStorage } from '@vueuse/core'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
-const { padding } = usePaddingForViews()
+const { padding } = usePaddingForViews({
+  offsetTop: 0,
+  offsetBottom: 0,
+})
 const proxiesRef = ref()
 const scrollStatus = useSessionStorage('cache/proxies-scroll-status', {
   [PROXY_TAB_TYPE.PROVIDER]: 0,

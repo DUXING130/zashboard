@@ -38,7 +38,10 @@ import { usePaddingForViews } from '@/composables/paddingViews'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { computed, nextTick, ref } from 'vue'
 
-const { paddingBottom } = usePaddingForViews()
+const { paddingTop, paddingBottom } = usePaddingForViews({
+  offsetTop: 0,
+  offsetBottom: 0,
+})
 const parentRef = ref<HTMLElement | null>(null)
 const props = withDefaults(
   defineProps<{
@@ -59,6 +62,7 @@ const virutalOptions = computed(() => {
     getScrollElement: () => parentRef.value,
     estimateSize: () => props.size,
     overscan: props.overscan,
+    paddingStart: paddingTop.value,
   }
 })
 

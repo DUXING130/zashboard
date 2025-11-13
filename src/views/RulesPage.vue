@@ -56,7 +56,10 @@ import { computed } from 'vue'
 
 fetchRules()
 
-const { padding } = usePaddingForViews()
+const { padding } = usePaddingForViews({
+  offsetTop: 8,
+  offsetBottom: 8,
+})
 const isVirtualScroller = computed(() => {
   return rulesTabShow.value === RULE_TAB_TYPE.RULES && renderRules.value.length > 200
 })
