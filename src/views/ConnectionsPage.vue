@@ -1,10 +1,12 @@
 <template>
-  <div
-    class="size-full overflow-x-hidden"
-    :style="!useConnectionCard && padding"
-  >
-    <ConnectionCardList v-if="useConnectionCard" />
-    <ConnectionTable v-else />
+  <div class="relative flex size-full flex-col overflow-hidden">
+    <template v-if="useConnectionCard">
+      <ConnectionCardList />
+    </template>
+    <template v-else>
+      <ConnectionCtrl />
+      <ConnectionTable />
+    </template>
     <ConnectionDetails />
   </div>
 </template>
@@ -13,9 +15,8 @@
 import ConnectionCardList from '@/components/connections/ConnectionCardList.vue'
 import ConnectionDetails from '@/components/connections/ConnectionDetails.vue'
 import ConnectionTable from '@/components/connections/ConnectionTable.vue'
-import { usePaddingForViews } from '@/composables/paddingViews'
+import ConnectionCtrl from '@/components/sidebar/ConnectionCtrl.tsx'
 import { useConnectionCard } from '@/store/settings'
-const { padding } = usePaddingForViews({ offsetBottom: -8, offsetTop: -4 })
 </script>
 
 <style>

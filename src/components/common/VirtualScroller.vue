@@ -1,8 +1,9 @@
 <template>
   <div
     ref="parentRef"
-    class="flex h-full w-full overflow-y-auto px-2"
+    class="flex h-full w-full flex-col overflow-y-auto"
   >
+    <slot name="before" />
     <div
       :style="{
         height: `${totalSize}px`,
@@ -10,7 +11,7 @@
       class="relative w-full"
     >
       <div
-        class="absolute top-0 left-0 w-full"
+        class="absolute top-0 left-0 w-full p-2"
         :style="{
           transform: `translateY(${virtualRows[0]?.start ?? 0}px)`,
         }"
@@ -37,7 +38,7 @@ import { usePaddingForViews } from '@/composables/paddingViews'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { computed, nextTick, ref } from 'vue'
 
-const { paddingTop, paddingBottom } = usePaddingForViews()
+const { paddingBottom } = usePaddingForViews()
 const parentRef = ref<HTMLElement | null>(null)
 const props = withDefaults(
   defineProps<{
@@ -58,7 +59,6 @@ const virutalOptions = computed(() => {
     getScrollElement: () => parentRef.value,
     estimateSize: () => props.size,
     overscan: props.overscan,
-    paddingStart: paddingTop.value,
   }
 })
 
