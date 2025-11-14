@@ -468,8 +468,8 @@ const columns: ColumnDef<Connection>[] = [
   },
 ]
 
-const grouping = ref<GroupingState>([])
-const expanded = ref<ExpandedState>({})
+const grouping = useStorage<GroupingState>('config/table-grouping', [])
+const expanded = useStorage<ExpandedState>('config/table-expanded', {})
 const sorting = useStorage<SortingState>('config/table-sorting', [])
 const columnPinning = useStorage<ColumnPinningState>('config/table-column-pinning', {
   left: [],
